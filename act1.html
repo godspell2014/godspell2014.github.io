@@ -3,7 +3,10 @@
 <style>
 h1 {color:#00ff00;}
 </style>
+<script src="act1_songs.js"></script>
 </head>
+
+
 <script>
 
 var total_seconds = 0;
@@ -13,16 +16,6 @@ var next_clock = {hours: 0, seconds: 0, minutes: 0};
 var next_song;
 var song_idx=0;
 var seconds_till_next =0;
-var songs=new Array();
-
-songs[0]= {name: "Prepare Ye", start: (6*60 + 18)}
-songs[1]= {name: "God Save The People", start: (8*60 + 42)}
-songs[2] = {name: "Day by Day", start: (22*60 + 23)}
-songs[3] = {name: "Learn Your Lessons Well", start:(35*60 + 35)}
-songs[4] = {name: "Bless the Lord", start:(43*60 + 2)}
-songs[5] = {name: "All for the Best", start:(47*60 + 22)}
-songs[6] = {name: "All Good Gifts", start:(55*60 + 43)}
-songs[7] = {name: "Light of the World", start:(60*60 + 4)} 
 
 function starttimer() {
 	
@@ -33,7 +26,7 @@ function starttimer() {
 function timercount(){
   
 	//set frequency of timer increment
-	setTimeout("timercount()",1000);
+	setTimeout("timercount()",1);
 
 	//look for song changes
 	updateSongName();
@@ -50,7 +43,8 @@ function timercount(){
 	if(seconds_till_next < 30)
 		flash();
 
-	total_seconds = Math.floor(new Date() / 1000) - start_seconds;
+	//total_seconds = Math.floor(new Date() / 1000) - start_seconds;
+	total_seconds++;
 }
 
 function converttoclock(seconds, clock){
@@ -76,7 +70,6 @@ function converttoclock(seconds, clock){
 
 function updateSongName(){
 
-	var found = 0;
 	var i=0;
 	for(i;i<songs.length;i++){
 		if(total_seconds == songs[i].start){
@@ -86,12 +79,10 @@ function updateSongName(){
 	}
 	
 	if(song_idx == songs.length){
-	//window.location.href = "act2.html";
-	document.getElementById("nextsong").innerHTML="Intermission";
-	document.getElementById("nextclock").innerHTML="Intermission";
+	window.location.href = "done.html";
 	}
 	else{
-	document.getElementById("nextsong").innerHTML="Next: " + songs[song_idx].name;
+	document.getElementById("nextsong").innerHTML=songs[song_idx].name;
 	}
 }
 
@@ -106,7 +97,7 @@ function flash(){
 
 	//document.getElementById("menu").style.background = 'black';
 	if(flash_count % 2 == 0){
-		document.body.style.background = 'white';
+		document.body.style.background = 'grey';
 		flash_count++;
 	}
 	else if(flash_count % 2 == 1){
@@ -117,18 +108,32 @@ function flash(){
 	setTimeout(flash, 500);
 }
 
-
-
 </script>
 <body onload="starttimer()" bgcolor = 'black' align='center'>
 
+	<div id="topspacer" 
+		style="height:200px;width:400px">
+	</div>
+	<div>
+		<p style="font-family:arial;color:white;font-size:20px;">Elapsed Time</p>
+	</div>
 	<div>
 	<h1 id="showclock"></h1>
+	</div>
+	
+	<div>
+		<p style="font-family:arial;color:white;font-size:20px;">Next Song</p>
 	</div>
 	<div>
 	<h1 id="nextsong"></h1>
 	</div>
+	
+	<div>
+		<p style="font-family:arial;color:white;font-size:20px;">Time Until Next</p>
+	</div>
 	<div>
 	<h1 id="nextclock"></h1>
 	</div>
-</body></html>
+
+</body>
+</html>
