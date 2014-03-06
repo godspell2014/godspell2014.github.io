@@ -1,9 +1,11 @@
 var flash_count = 0;
 var NUM_FLASHES = 1;
+var to_flash;
 function flash(){
 	
 	if(flash_count == 2*NUM_FLASHES){
 		flash_count = 0;
+		clearTimeout(to_flash);
 		return;
 	}
 
@@ -17,7 +19,7 @@ function flash(){
 		flash_count++;
 	}
 	
-	setTimeout(flash, 500);
+	to_flash = setTimeout(flash, 500);
 }
 
 function converttoclock(seconds, clock){
