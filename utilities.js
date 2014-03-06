@@ -1,27 +1,33 @@
 var flash_count = 0;
 var NUM_FLASHES = 1;
 var to_flash;
-function flash(){
+var flash_active = 0;
+function activate_flash(){
 	
-	if(flash_count == 2*NUM_FLASHES){
-		flash_count = 0;
-		clearTimeout(to_flash);
-		return;
-	}
+	if(flash_active) return;
+	flash_active = 1;
+	
+	flash();
+}
+function deactivate_flash(){
+	if(!flash_active) return;
+	clearTimeout(to_flash);
+	document.body.style.background = 'black';
+	flash_count=0;
+	flash_active=0;
+}
+function flash(){
 
-	//document.getElementById("menu").style.background = 'black';
+	to_flash = setTimeout(flash, 500);
+
+	flash_count++;
 	if(flash_count % 2 == 0){
 		document.body.style.background = 'grey';
-		flash_count++;
 	}
-	else if(flash_count % 2 == 1){
+	else{
 		document.body.style.background = 'black';
-		flash_count++;
 	}
-	
-	to_flash = setTimeout(flash, 500);
 }
-
 function converttoclock(seconds, clock){
 
 	var minstr;
