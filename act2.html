@@ -15,6 +15,7 @@ var show_clock = {hours: 0, seconds: 0, minutes: 0};
 var next_clock = {hours: 0, seconds: 0, minutes: 0};
 var next_song;
 var seconds_till_next =0;
+var to_var;
 
 function starttimer() {
 	
@@ -25,7 +26,7 @@ function starttimer() {
 function timercount(){
   
 	//set frequency of timer increment
-	setTimeout("timercount()",1);
+	to_var = setTimeout("timercount()",1);
 
 	//look for song changes
 	updateSongName();
@@ -57,7 +58,15 @@ function updateSongName(){
 		}
 	}
 	
-	if(i==songs.length) window.location.href = "done.html";
+	if(i==songs.length){
+		clearTimeout(to_var);
+		done();
+	}
+		
+}
+
+function done(){
+	window.location.href = "done.html";
 }
 </script>
 
