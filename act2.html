@@ -6,6 +6,7 @@ h1 {color:#00ff00;}
 </head>
 
 <script src="act2_songs.js"></script>
+<script src="utilities.js"></script>
 <script>
 
 var total_seconds = 0;
@@ -13,7 +14,6 @@ var start_seconds = 0;
 var show_clock = {hours: 0, seconds: 0, minutes: 0};
 var next_clock = {hours: 0, seconds: 0, minutes: 0};
 var next_song;
-var song_idx=0;
 var seconds_till_next =0;
 
 function starttimer() {
@@ -35,9 +35,10 @@ function timercount(){
 		converttoclock(total_seconds, show_clock);
 	
 	//update next song countdown
-	seconds_till_next = songs[song_idx].start - total_seconds;
+	seconds_till_next = next_song.start - total_seconds;
 	document.getElementById("nextclock").innerHTML=
 		converttoclock(seconds_till_next, next_clock);
+	document.getElementById("nextsong").innerHTML=next_song.name;
 
 	if(seconds_till_next < 30)
 		flash();
@@ -46,68 +47,20 @@ function timercount(){
 	total_seconds++;
 }
 
-function converttoclock(seconds, clock){
-
-	var minstr;
-	var secstr;
-	var hrstr;
-		
-	clock.hours = Math.floor(seconds/3600);
-	if(clock.hours < 10) hrstr = "0" + clock.hours;
-	else hrstr = clock.hours;
-	
-	clock.minutes = Math.floor((seconds - clock.hours*3600)/60);
-	if(clock.minutes < 10) minstr = "0" + clock.minutes;
-	else minstr = clock.minutes;
-	
-	clock.seconds = seconds%60;
-	if(clock.seconds < 10) secstr = "0" + clock.seconds;
-	else secstr = clock.seconds;
-
-	return (hrstr + ":" + minstr + ":" + secstr);
-}
-
 function updateSongName(){
 
 	var i=0;
 	for(i;i<songs.length;i++){
-		if(total_seconds == songs[i].start){
-			song_idx++;
+		if(total_seconds < songs[i].start){
+			next_song = songs[i];
 			break;
 		}
 	}
 	
-	if(song_idx == songs.length){
-	window.location.href = "done.html";
-	}
-	else{
-	document.getElementById("nextsong").innerHTML=songs[song_idx].name;
-	}
+	if(i==songs.length) window.location.href = "done.html";
 }
-
-var flash_count = 0;
-var NUM_FLASHES = 1;
-function flash(){
-	
-	if(flash_count == 2*NUM_FLASHES){
-		flash_count = 0;
-		return;
-	}
-
-	//document.getElementById("menu").style.background = 'black';
-	if(flash_count % 2 == 0){
-		document.body.style.background = 'grey';
-		flash_count++;
-	}
-	else if(flash_count % 2 == 1){
-		document.body.style.background = 'black';
-		flash_count++;
-	}
-	
-	setTimeout(flash, 500);
-}
-
 </script>
+
 <body onload="starttimer()" bgcolor = 'black' align='center'>
 
 	<div id="topspacer" 
