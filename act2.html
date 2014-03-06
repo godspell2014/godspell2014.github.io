@@ -26,7 +26,7 @@ function starttimer() {
 function timercount(){
   
 	//set frequency of timer increment
-	to_var = setTimeout("timercount()",1);
+	to_var = setTimeout("timercount()",200);
 
 	//look for song changes
 	updateSongName();
@@ -44,8 +44,7 @@ function timercount(){
 	if(seconds_till_next < 30)
 		flash();
 
-	//total_seconds = Math.floor(new Date() / 1000) - start_seconds;
-	total_seconds++;
+	total_seconds = Math.floor(new Date() / 1000) - start_seconds;
 }
 
 function updateSongName(){
