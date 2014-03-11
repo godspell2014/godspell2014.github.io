@@ -48,3 +48,18 @@ function converttoclock(seconds, clock){
 
 	return (hrstr + ":" + minstr + ":" + secstr);
 }
+
+function activate_warning(){
+
+var h1Elements = document.getElementsByTagName("h1");
+
+h1Elements[2].style.color = "red";
+
+
+}
+
+function deactivate_warning(){
+var h1Elements = document.getElementsByTagName("h1");
+
+h1Elements[2].style.color = "#00ff00";
+}

@@ -42,9 +42,9 @@ function timercount(){
 	document.getElementById("nextsong").innerHTML=next_song.name;
 
 	if(seconds_till_next < 30)
-		activate_flash();
+		activate_warning();
 	else
-		deactivate_flash();
+		deactivate_warning();
 
 	total_seconds = Math.floor(new Date() / 1000) - start_seconds;
 }
