@@ -1,9 +1,9 @@
 var songs=new Array();
-songs[0]= {name: "Prepare Ye", start: (6*60 + 18)}
-songs[1]= {name: "God Save The People", start: (8*60 + 34)}
-songs[2] = {name: "Day by Day", start: (22*60 + 0)}
-songs[3] = {name: "Learn Your Lessons Well", start:(35*60 + 54)}
-songs[4] = {name: "Bless the Lord", start:(42*60 + 18)}
-songs[5] = {name: "All for the Best", start:(46*60 + 47)}
-songs[6] = {name: "All Good Gifts", start:(55*60 + 20)}
-songs[7] = {name: "Light of the World", start:(60*60 + 18)}
+songs[0]= {name: "Prepare Ye", start: (6*60 + 15)}
+songs[1]= {name: "God Save The People", start: (8*60 + 33)}
+songs[2] = {name: "Day by Day", start: (21*60 + 59)}
+songs[3] = {name: "Learn Your Lessons Well", start:(35*60 + 11)}
+songs[4] = {name: "Bless the Lord", start:(42*60 + 50)}
+songs[5] = {name: "All for the Best", start:(47*60 + 12)}
+songs[6] = {name: "All Good Gifts", start:(55*60 + 42)}
+songs[7] = {name: "Light of the World", start:(60*60 + 38)}
